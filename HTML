@@ -1,1 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lume Filmes — Casamentos e eventos em vídeo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#f2f4f3; --surface:#e4e9e8; --text:#13212b; --muted:#4f606b; --line:#c3cdd0; --accent:#9a5a14; --on-accent:#fff;
+  --f1:#c9d8dc; --f2:#e6cfae; --f3:#b9c4d6; --f4:#d9c3c8;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif; --sans:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1a23; --surface:#16252f; --text:#e8eef1; --muted:#9fb0ba; --line:#2a3d49; --accent:#e8b667; --on-accent:#1a1206;
+  --f1:#27424d; --f2:#5a4526; --f3:#2c3a58; --f4:#4d3340;
+}}
+:root[data-theme="dark"]{--bg:#0f1a23; --surface:#16252f; --text:#e8eef1; --muted:#9fb0ba; --line:#2a3d49; --accent:#e8b667; --on-accent:#1a1206; --f1:#27424d; --f2:#5a4526; --f3:#2c3a58; --f4:#4d3340}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.05;margin:0}
+h2{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:.6rem}
+section{padding:5rem 0}
+.lead{color:var(--muted);max-width:52ch;margin:0 0 2.5rem}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:var(--serif);font-size:1.5rem;text-decoration:none}
+nav{display:flex;gap:1.4rem;font-size:.95rem}
+nav a{text-decoration:none;color:var(--muted)}nav a:hover{color:var(--text)}
+@media(max-width:700px){nav a:not(.cta-s){display:none}}
+.cta-s{background:var(--accent);color:var(--on-accent)!important;padding:.35rem .9rem;border-radius:99px;font-weight:500}
 
+/* hero viewfinder */
+.hero{padding:2.5rem 0 4rem}
+.vf{position:relative;aspect-ratio:16/9;min-height:340px;border-radius:6px;overflow:hidden;display:grid;place-items:center;text-align:center;padding:2rem;
+  background:radial-gradient(120% 90% at 70% 20%,var(--f2),transparent 60%),radial-gradient(90% 90% at 15% 90%,var(--f3),transparent 60%),var(--f1)}
+.vf h1{font-size:clamp(2.6rem,8vw,6rem);max-width:14ch;color:var(--text)}
+.vf p{margin:1rem auto 0;max-width:40ch;color:var(--text);opacity:.8}
+.c{position:absolute;width:34px;height:34px;border:2px solid var(--text);opacity:.7}
+.c.tl{top:18px;left:18px;border-right:0;border-bottom:0}.c.tr{top:18px;right:18px;border-left:0;border-bottom:0}
+.c.bl{bottom:18px;left:18px;border-right:0;border-top:0}.c.br{bottom:18px;right:18px;border-left:0;border-top:0}
+.rec{position:absolute;top:24px;left:64px;display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-variant-numeric:tabular-nums;color:var(--text)}
+.rec i{width:10px;height:10px;border-radius:50%;background:#d63b3b;animation:blink 1.6s steps(2,start) infinite}
+.tc{position:absolute;bottom:24px;right:64px;font-size:.85rem;font-variant-numeric:tabular-nums;color:var(--text)}
+@keyframes blink{50%{opacity:0}}
+.btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem;justify-content:center}
+.btn{display:inline-block;padding:.75rem 1.4rem;border-radius:99px;text-decoration:none;border:1px solid var(--text);cursor:pointer;font:inherit;font-weight:500;background:transparent;color:var(--text)}
+.btn.p{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+
+/* portfólio */
+.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.tabs button{font:inherit;font-size:.95rem;padding:.4rem 1rem;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.film{position:relative;aspect-ratio:16/10;border-radius:4px;overflow:hidden;border:0;padding:1rem;text-align:left;color:var(--text);cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;font:inherit}
+.film[hidden]{display:none}
+.film::after{content:"";position:absolute;left:50%;top:42%;width:54px;height:54px;margin:-27px;border-radius:50%;background:var(--bg);opacity:.9}
+.film::before{content:"";position:absolute;left:50%;top:42%;margin:-9px -5px;border-left:16px solid var(--text);border-top:10px solid transparent;border-bottom:10px solid transparent;z-index:2}
+.film strong{font-family:var(--serif);font-weight:400;font-size:1.5rem;line-height:1.1;position:relative;z-index:1}
+.film span{font-size:.85rem;opacity:.8;position:relative;z-index:1}
+.g1{background:linear-gradient(135deg,var(--f2),var(--f4))}.g2{background:linear-gradient(160deg,var(--f1),var(--f3))}
+.g3{background:linear-gradient(120deg,var(--f4),var(--f2))}.g4{background:linear-gradient(200deg,var(--f3),var(--f1))}
+.g5{background:linear-gradient(110deg,var(--f2),var(--f1))}.g6{background:linear-gradient(150deg,var(--f4),var(--f3))}
+.note{font-size:.9rem;color:var(--muted);margin-top:1rem}
+
+/* serviços */
+.svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem}
+.svc article{border-top:2px solid var(--accent);padding-top:1rem}
+.svc h3{font-size:1.7rem;margin-bottom:.5rem}
+.svc ul{padding-left:1.1rem;margin:.8rem 0 0;color:var(--muted)}
+
+/* processo */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:3rem 1fr;gap:1rem;padding:1.2rem 0;border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s);font-family:var(--serif);font-size:2rem;color:var(--accent);line-height:1}
+.steps b{display:block;font-weight:500}.steps span{color:var(--muted)}
+
+/* sobre */
+.about{display:grid;grid-template-columns:1fr 1.3fr;gap:3rem;align-items:center}
+.portrait{aspect-ratio:4/5;border-radius:4px;background:linear-gradient(170deg,var(--f3),var(--f4));display:grid;place-items:center;color:var(--muted);font-size:.9rem;text-align:center;padding:1rem}
+@media(max-width:720px){.about{grid-template-columns:1fr}.rec{left:56px}.tc{right:56px}}
+blockquote{margin:0;padding:1.5rem 0;border-top:1px solid var(--line);font-family:var(--serif);font-size:1.5rem;line-height:1.3}
+blockquote cite{display:block;margin-top:.6rem;font:400 .9rem var(--sans);color:var(--muted)}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem}
+
+/* contato */
+form{display:grid;gap:1rem;max-width:560px}
+label{display:grid;gap:.3rem;font-size:.95rem;font-weight:500}
+input,select,textarea{font:inherit;padding:.7rem .8rem;border-radius:4px;border:1px solid var(--line);background:var(--surface);color:var(--text)}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+@media(prefers-reduced-motion:reduce){.rec i{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <a class="logo" href="#inicio">Lume Filmes</a>
+  <nav aria-label="Principal">
+    <a href="#portfolio">Portfólio</a><a href="#servicos">Serviços</a><a href="#processo">Como funciona</a><a href="#sobre">Sobre</a>
+    <a class="cta-s" href="#contato">Pedir orçamento</a>
+  </nav>
+</div></header>
+
+<main>
+<section class="hero" id="inicio"><div class="wrap">
+  <div class="vf">
+    <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+    <div class="rec"><i></i>REC</div><div class="tc" id="tc">00:00:00:00</div>
+    <div>
+      <h1>Seu dia, contado em movimento</h1>
+      <p>Filmagem de casamentos e eventos, com olhar atento aos detalhes que você vai querer rever.</p>
+      <div class="btns"><a class="btn p" href="#contato">Pedir orçamento</a><a class="btn" href="#portfolio">Ver trabalhos</a></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="portfolio"><div class="wrap">
+  <h2>Trabalhos recentes</h2>
+  <p class="lead">Filmes curtos, teasers e coberturas completas. Escolha uma categoria para filtrar.</p>
+  <div class="tabs" role="group" aria-label="Filtrar por categoria">
+    <button aria-pressed="true" data-f="todos">Todos</button>
+    <button aria-pressed="false" data-f="casamento">Casamentos</button>
+    <button aria-pressed="false" data-f="evento">Eventos</button>
+    <button aria-pressed="false" data-f="corporativo">Corporativo</button>
+    <button aria-pressed="false" data-f="clipe">Clipes</button>
+  </div>
+  <div class="grid">
+    <button class="film g1" data-c="casamento"><strong>Marina &amp; Pedro</strong><span>Casamento · Sítio em Atibaia · 4 min</span></button>
+    <button class="film g2" data-c="casamento"><strong>Helena &amp; Rafael</strong><span>Casamento na praia · 3 min</span></button>
+    <button class="film g3" data-c="evento"><strong>Debut da Júlia</strong><span>Aniversário · Teaser · 1 min</span></button>
+    <button class="film g4" data-c="corporativo"><strong>Encontro anual Orbita</strong><span>Corporativo · Cobertura · 5 min</span></button>
+    <button class="film g5" data-c="clipe"><strong>“Maré baixa”</strong><span>Clipe musical · Banda Costa Norte</span></button>
+    <button class="film g6" data-c="evento"><strong>Formatura Medicina</strong><span>Formatura · Highlights · 6 min</span></button>
+  </div>
+  <p class="note">Substitua estes cartões pelos seus vídeos do YouTube ou Vimeo e pelas capas reais.</p>
+</div></section>
+
+<section id="servicos" style="background:var(--surface)"><div class="wrap">
+  <h2>O que eu filmo</h2>
+  <p class="lead">Cada evento tem um ritmo próprio. A equipe e o equipamento se adaptam a ele.</p>
+  <div class="svc">
+    <article><h3>Casamentos</h3><p>Cerimônia, festa e os bastidores que ninguém mais vê.</p>
+      <ul><li>Cobertura completa ou meio período</li><li>Filme de 3 a 5 minutos</li><li>Teaser para redes sociais</li><li>Drone, onde permitido</li></ul></article>
+    <article><h3>Eventos sociais</h3><p>Aniversários, debutes, formaturas e batizados.</p>
+      <ul><li>Highlights editados</li><li>Cobertura de discursos</li><li>Entrega em vertical e horizontal</li></ul></article>
+    <article><h3>Corporativo</h3><p>Convenções, lançamentos, palestras e institucionais.</p>
+      <ul><li>Captação em múltiplas câmeras</li><li>Entrevistas com áudio limpo</li><li>Cortes para redes</li></ul></article>
+    <article><h3>Clipes e publicidade</h3><p>Projetos com roteiro, direção e pós-produção.</p>
+      <ul><li>Roteiro e storyboard</li><li>Correção de cor</li><li>Trilha e mixagem</li></ul></article>
+  </div>
+</div></section>
+
+<section id="processo"><div class="wrap">
+  <h2>Como funciona</h2>
+  <p class="lead">Do primeiro contato ao arquivo final, você sabe o que vem a seguir.</p>
+  <ol class="steps">
+    <li><div><b>Conversa inicial</b><span>Falamos sobre data, local, estilo e o que não pode ficar de fora.</span></div></li>
+    <li><div><b>Planejamento</b><span>Visita ao local, roteiro do dia e combinados com cerimonial e fotógrafo.</span></div></li>
+    <li><div><b>Gravação</b><span>Equipe discreta, com câmeras, microfones de lapela e iluminação própria.</span></div></li>
+    <li><div><b>Edição</b><span>Seleção, cor e trilha. Você recebe uma prévia para pedir ajustes.</span></div></li>
+    <li><div><b>Entrega</b><span>Link privado e arquivo em alta qualidade, em até 45 dias.</span></div></li>
+  </ol>
+</div></section>
+
+<section id="sobre" style="background:var(--surface)"><div class="wrap about">
+  <div class="portrait">Coloque aqui uma foto sua trabalhando</div>
+  <div>
+    <h2>Oi, eu sou o [Seu Nome]</h2>
+    <p>Filmo casamentos e eventos há mais de [X] anos. Prefiro captar momentos reais a dirigir poses: o riso
