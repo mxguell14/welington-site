@@ -131,15 +131,6 @@
   var WHATSAPP = '5511999998888';          // país + DDD + número
   // ============================
 
-  // Timecode do visor
-  var tc=document.getElementById('tc'),n=0;
-  function p(x){return String(x).padStart(2,'0')}
-  setInterval(function(){
-    n++;
-    var f=n%24, s=Math.floor(n/24)%60, m=Math.floor(n/1440)%60;
-    tc.textContent='00:'+p(m)+':'+p(s)+':'+p(f);
-  },42);
-
   // Filtro do portfólio
   var btns=document.querySelectorAll('.tabs button'),
       films=document.querySelectorAll('.film');
